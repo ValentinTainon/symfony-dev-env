@@ -47,12 +47,8 @@ else
 fi
 
 ### SYMFONY ###
-if symfony server:status | grep -qi "not running"; then
-    echo "Symfony is already off."
-else
-    echo -e "Restarting Symfony...\n"
-    symfony server:stop && symfony serve -d
-fi
+echo -e "Restarting Symfony...\n"
+symfony server:stop && symfony serve -d
 
 exit 0
 
