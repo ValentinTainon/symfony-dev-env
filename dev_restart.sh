@@ -12,13 +12,12 @@ RESET_CLR="\e[0m"
 ### FUNCTIONS ###
 check_cmd() {
     if [[ $? -eq 0 ]]; then
-        echo -e "[${GREEN} OK ${RESET_CLR}]\n"
+        echo -e "[${GREEN} OK ${RESET_CLR}]"
     else
         echo -e "[${RED} ERROR ${RESET_CLR}]"
         exit 1
     fi
 }
-
 
 ### START OF SCRIPT ###
 
@@ -30,24 +29,24 @@ fi
 
 ### APACHE ###
 if ! systemctl is-active -q httpd; then
-    echo -e "Apache is already off.\n"
+    echo "Apache is already off."
 else
     echo -n "Restarting Apache... "
-    sudo systemctl restart httpd > /dev/null 2>&1
+    sudo systemctl restart httpd >/dev/null 2>&1
     check_cmd
 fi
 
 ### MARIADB ###
 if ! systemctl is-active -q mariadb; then
-    echo -e "MariaDB is already off.\n"
+    echo "MariaDB is already off."
 else
     echo -n "Restarting MariaDB... "
-    sudo systemctl restart mariadb > /dev/null 2>&1
+    sudo systemctl restart mariadb >/dev/null 2>&1
     check_cmd
 fi
 
 ### SYMFONY ###
-echo -e "Restarting Symfony...\n"
+echo "Restarting Symfony..."
 symfony server:stop && symfony serve -d
 
 exit 0
