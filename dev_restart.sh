@@ -28,22 +28,14 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 ### APACHE ###
-if ! systemctl is-active -q httpd; then
-    echo "Apache is already off."
-else
-    echo -n "Restarting Apache... "
-    sudo systemctl restart httpd >/dev/null 2>&1
-    check_cmd
-fi
+echo -n "Restarting Apache... "
+sudo systemctl restart httpd >/dev/null 2>&1
+check_cmd
 
 ### MARIADB ###
-if ! systemctl is-active -q mariadb; then
-    echo "MariaDB is already off."
-else
-    echo -n "Restarting MariaDB... "
-    sudo systemctl restart mariadb >/dev/null 2>&1
-    check_cmd
-fi
+echo -n "Restarting MariaDB... "
+sudo systemctl restart mariadb >/dev/null 2>&1
+check_cmd
 
 ### SYMFONY ###
 echo "Restarting Symfony..."
